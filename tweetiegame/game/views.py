@@ -14,26 +14,26 @@ from game.models import Game
 
 
 # class SearchTwitterView(TemplateView):
-#     template_name = "index.html"
+    # template_name = "index.html"
 
 def get_twitter_dict(word1, word2):
-    # context = super(SearchTwitterView, self).get_context_data(**kwargs)
+    # def get_context_data(self, **kwargs):
+    #     context = super(SearchTwitterView, self).get_context_data(**kwargs)
 
     response = requests.get(
-        'https://api.twitter.com/1.1/search/tweets.json?q={} {}'.
+        'https://api.twitter.com/1.1/search/tweets.json?q={} {}&lang=en&count=100'.
             format(word1, word2),
         headers={'Authorization': 'Bearer {}'.format(TWITTER_TOKEN)})
 
     tweets = response.json()
-
+    num = len(tweets['statuses'])
     tweet_list = tweets['statuses'][:3]
-
     ret_tweet_list = []
 
     for each in range(len(tweet_list)):
         ret_tweet_list.append(tweet_list[each]['text'])
 
-    return_dict = {'count': len(tweets), 'tweets': ret_tweet_list}
+    return_dict = {'count': num, 'tweets': ret_tweet_list}
     return return_dict
 
 def playgame(request):
