@@ -10,3 +10,21 @@
     text-align: center;
     background: cornflowerblue;
 }
+
+form {
+    display: inline-block;
+    margin-left: auto;
+    margin-right:auto;
+    }
+
+.player1score {
+    float: left;
+}
+
+.player2score {
+    float: right;
+}
+
+footer {
+    text-align: center;
+}

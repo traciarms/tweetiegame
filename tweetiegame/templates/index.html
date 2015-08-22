@@ -9,10 +9,21 @@
     <title>Tweetie Game</title>
 </head>
 <body>
-<div>
+<div class="container">
+
+    </div>
     <div class="title">
         <h1 class="title">Tweetie Game</h1>
     </div>
+    <div class="player1score">
+        <span>Player 1
+              Score: put score here</span>
+    </div>
+    <div class="player2score">
+        <span>Player 2
+              Score: put score here</span>
+    </div>
+        <div>
             <form action="" method="post">
                 {% csrf_token %}
                 {{ giveform }}
@@ -23,7 +34,11 @@
                 {{ guessform }}
                 <input type="submit" value="Submit" />
             </form>
+        </div>
 
 </div>
+<footer>
+    Put the tweets here
+</footer>
 </body>
 </html>
