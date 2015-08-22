@@ -2,29 +2,98 @@
     /*border: solid 1px red;*/
 /*}*/
 
-* {
-    box-sizing: border-box;
+/** {*/
+    /*box-sizing: border-box;*/
+/*}*/
+
+/*.title {*/
+    /*text-align: center;*/
+    /*background: cornflowerblue;*/
+    /**/
+/*}*/
+
+/*.player1score {*/
+    /*float: left;*/
+/*}*/
+
+/*.player2score {*/
+    /*float: right;*/
+/*}*/
+
+/*footer {*/
+    /*text-align: center;*/
+/*}*/
+
+/*div.form*/
+/*{*/
+    /*display: block;*/
+    /*text-align: center;*/
+/*}*/
+/*form*/
+/*{*/
+    /*display: inline-block;*/
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
+    /*text-align: left;*/
+/*}*/
+
+html, body {
+    height: 100%;
+    min-height: 400px; /* to cater for no element 'collision'... */
+    margin: 0;
+    padding: 0;
+    position: relative; /* to keep header and footer positioned correctly... */
 }
 
-.title {
-    text-align: center;
-    background: cornflowerblue;
+#header {
+    background-color: cornflowerblue;
+    height: 65px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
 }
 
-form {
-    display: inline-block;
-    margin-left: auto;
-    margin-right:auto;
-    }
+#container {
+    background-color: red;
+    width: 600px;
+    height: 40%;
+    position: absolute;
+    left: 50%;
+    margin-left: -300px; /* 50% over, then move back 300px to center... */
 
-.player1score {
-    float: left;
 }
 
-.player2score {
-    float: right;
+#footer {
+    background-color: cornflowerblue;
+    height: 250px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }
 
-footer {
-    text-align: center;
+blockquote.twitter-tweet {
+  display: inline-block;
+  padding: 16px;
+  margin: 10px 0;
+  max-width: 468px;
+  border: #ddd 1px solid;
+  border-top-color: #eee;
+  border-bottom-color: #bbb;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  font: bold 14px/18px Helvetica, Arial, sans-serif;
+  color: #000;
+}
+
+blockquote.twitter-tweet p {
+  font: normal 18px/24px Georgia, "Times New Roman", Palatino, serif;
+  margin: 0 5px 10px 0;
+}
+
+blockquote.twitter-tweet a[href^="https://twitter.com"] {
+  font-weight: normal;
+  color: #666;
+  font-size: 12px;
 }

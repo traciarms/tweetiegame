@@ -7,38 +7,71 @@
     <link rel="stylesheet" href="{% static "site-style.css" %}"/>
     <meta charset="UTF-8">
     <title>Tweetie Game</title>
+
+    <script src="/tweetiegame/global/bootstrap/jquery-2.1.4.js"></script>
+<script>
+
+    // this will run this function as soon as the page is loaded...
+    $(function(){
+
+        // bind the resize event to the window...
+        // this will call the 'centerMyContent' function whenever the
+        // window is resized...
+        jQuery(window).bind('resize', centerMyContent);
+
+        // call the 'centerMyContent' function on the first page load...
+        centerMyContent();
+
+    });
+
+    // the actual centring function...
+    function centerMyContent(){
+
+        // get the body and container elements...
+        var container = jQuery('#container');
+        var body = jQuery('body');
+
+        // work out the top position for the container...
+        var top = (body.height() / 2) - (container.height() / 2);
+
+        // set the container's top position...
+        container.css('top', top + 'px');
+
+    }
+
+</script>
 </head>
 <body>
-<div class="container">
 
+    <div id="header">
+        <h1>Tweetie Game</h1>
     </div>
-    <div class="title">
-        <h1 class="title">Tweetie Game</h1>
-    </div>
-    <div class="player1score">
-        <span>Player 1
-              Score: put score here</span>
-    </div>
-    <div class="player2score">
-        <span>Player 2
-              Score: put score here</span>
-    </div>
-        <div>
-            <form action="" method="post">
-                {% csrf_token %}
-                {{ giveform }}
-                <input type="submit" value="Submit" />
-            </form>
-            <form action="" method="post">
-                {% csrf_token %}
-                {{ guessform }}
-                <input type="submit" value="Submit" />
-            </form>
+
+    <div id="container">
+        <div class="player1score">
+            <span>Player 1
+                  Score: put score here</span>
         </div>
+        <div class="player2score">
+            <span>Player 2
+                  Score: put score here</span>
+        </div>
+            <div class="form">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ giveform }}
+                    <input type="submit" value="Submit" />
+                </form>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ guessform }}
+                    <input type="submit" value="Submit" />
+                </form>
+            </div>
+    </div>
 
-</div>
-<footer>
-    Put the tweets here
-</footer>
+    <div id="footer">
+        stuff here
+    </div>
 </body>
 </html>
