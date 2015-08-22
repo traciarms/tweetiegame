@@ -24,8 +24,8 @@
                   Score: {{ game.player2score }}</span>
         </div>
             <div class="form">
-                {% if user.id == game.form_player_id %}
-                    {% if user.id == game.form_player_id and user.id != game.give_player %}
+                {% if user == game.form_player %}
+                    {% if user != game.give_player %}
                         The other player has given you the word: {{ game.giveword }}
                     {% endif %}
                     <form action="" method="post">
