@@ -42,7 +42,8 @@ def playgame(request):
         game = Game.objects.get(completed=False)
     except:
         game = Game.objects.create(player1=User.objects.get(username='player1'),
-                                   player2=User.objects.get(username='player2'))
+                                   player2=User.objects.get(username='player2'),
+                                   current_player=User.objects.get(username='player1'))
     context = {'game': game, 'form': form}
     if request.method == 'GET':
         return render(request, 'index.html', context)
