@@ -34,19 +34,21 @@ class SearchTwitterView(TemplateView):
 
 
 def playgame(request):
-    giveform = GiveForm(request.POST)
-    guessform = GuessForm(request.POST)
+    give_form = GiveForm(request.POST)
+    guess_form = GuessForm(request.POST)
     try:
         game = Game.objects.get(completed=False)
     except:
         game = Game.objects.create(player1=User.objects.get(username='player1'),
                                    player2=User.objects.get(username='player2'),
                                    give_player=User.objects.get(username='player1'))
-    context = {'game': game, 'giveform': giveform, 'guessform': guessform}
     if request.method == 'GET':
+        context = {'game': game, 'giveform': give_form, 'guessform': guess_form}
         return render(request, 'index.html', context)
     if request.method == 'POST':
-        giveword = giveform.cleaned_data['giveword']
-        guessword = guessform.cleaned_data['guessword']
-        context = {'game': game, 'giveform': giveform, 'guessform': guessform, 'giveword': giveword, 'guessword': guessword}
+        if give_form.is_valid():
+            giveword = give_form.cleaned_data['giveword']
+        if guess_form.is_valid():
+            guessword = guess_form.cleaned_data['guessword']
+        context = {'game': game, 'giveform': give_form, 'guessform': guess_form, 'giveword': giveword, 'guessword': guessword}
         return render(request, 'index.html', context)
