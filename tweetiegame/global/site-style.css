@@ -1,6 +1,6 @@
-* {
-    border: solid 1px red;
-}
+/** {*/
+    /*border: solid 1px red;*/
+/*}*/
 
 * {
     box-sizing: border-box;
@@ -8,4 +8,5 @@
 
 .title {
     text-align: center;
+    background: cornflowerblue;
 }
