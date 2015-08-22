@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 
 # Create your views here.
@@ -26,4 +27,6 @@ class SearchTwitterView(TemplateView):
         # Show rate limit status for this application
         # status = client.rate_limit_status()
         # print(status['resources']['search'])
-        return context
+        return contextdef index(request):
+    return HttpResponse('This is the index')
+
