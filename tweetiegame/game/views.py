@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render
 
@@ -6,6 +7,8 @@ import json
 from django.views.generic import TemplateView
 from game.client import Client
 import requests
+from game.forms import WordsForm
+from game.models import Game
 
 
 class SearchTwitterView(TemplateView):
@@ -23,7 +26,8 @@ class SearchTwitterView(TemplateView):
 
         # Pretty print of tweet payload
         # tweet = client.request('https://api.twitter.com/1.1/statuses/show.json?id=316683059296624640')
-        context['tweet'] = requests.get('https://api.twitter.com/1.1/search/tweets.json')
+        context['tweet'] = client.request(
+            'https://api.twitter.com/1.1/search/tweets.json?q=%40twitterapi')
         # print(json.dumps(tweet, sort_keys=True, indent=4, separators=(',', ':')))
 
         # Show rate limit status for this application
@@ -31,3 +35,22 @@ class SearchTwitterView(TemplateView):
         # print(status['resources']['search'])
         return context
 
+
+def playgame(request):
+    form = WordsForm(request.POST)
+    try:
+        game = Game.objects.get(completed=False)
+    except:
+        game = Game.objects.create(player1=User.objects.get(username='player1'),
+                                   player2=User.objects.get(username='player2'))
+    context = {'game': game, 'form': form}
+    if request.method == 'GET':
+        return render(request, 'index.html', context)
+    if request.method == 'POST':
+        form = WordsForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            currentword = data['currentword']
+            guessword = data['guessword']
+            context = {'game': game, 'form': form, 'currentword': currentword, 'guessword': guessword}
+            return render(request, 'index.html', context)
