@@ -25,14 +25,15 @@
         </div>
             <div class="form">
                 {% if user.id == game.form_player_id %}
-                    {% if user.id != game.give_player_id %}
-                        The other player has given you the word: {{ game.giveword }}
-                    {% endif %}
                     <form action="" method="post">
                         {% csrf_token %}
                         {{ form }}
+                        Please enter a word to start this turn:
                         <input type="submit" value="Submit" />
                     </form>
+                    {% if user.id != game.give_player_id %}
+                        The other player has given you the word: {{ game.giveword }}
+                    {% endif %}
                 {% else %}
                     <form action="" method="post">
                         {% csrf_token %}
