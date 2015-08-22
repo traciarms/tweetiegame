@@ -84,3 +84,7 @@ def playgame(request):
             return render(request, 'index.html', context)
         context = {'game': game, 'form': form,}
         return render(request, 'index.html', context)
+
+
+    #TODO: add refreash button, fix how tweets only show up for one person, hide form,
+    # TODO: add rounds and declare winner.
