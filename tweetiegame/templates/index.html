@@ -27,12 +27,7 @@
         <div>
             <form action="" method="post">
                 {% csrf_token %}
-                {{ giveform }}
-                <input type="submit" value="Submit" />
-            </form>
-            <form action="" method="post">
-                {% csrf_token %}
-                {{ guessform }}
+                {{ form }}
                 <input type="submit" value="Submit" />
             </form>
 
