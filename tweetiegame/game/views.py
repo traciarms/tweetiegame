@@ -27,6 +27,8 @@ class SearchTwitterView(TemplateView):
         # Show rate limit status for this application
         # status = client.rate_limit_status()
         # print(status['resources']['search'])
-        return contextdef index(request):
-    return HttpResponse('This is the index')
+        return context
+
+    def index(request):
+        return HttpResponse('This is the index')
 
