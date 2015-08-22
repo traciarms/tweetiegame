@@ -11,3 +11,4 @@ class Game(models.Model):
     player2score = models.IntegerField(default=0)
     completed = models.BooleanField(default=False)
     give_player = models.ForeignKey(User, related_name='give_player')
+    round = models.IntegerField(default=0)
