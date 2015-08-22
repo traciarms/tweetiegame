@@ -41,7 +41,9 @@
     </div>
 
     <div id="footer">
-        {{ twitter_dict.tweets }}
+        {% for tweets in twitter_dict.tweets %}
+            <blockquote class="twitter-tweet">{{ tweets }}</blockquote>
+        {% endfor %}
     </div>
 </body>
 </html>
