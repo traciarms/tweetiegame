@@ -24,12 +24,19 @@
                   Score: {{ game.player2score }}</span>
         </div>
             <div class="form">
-                <form action="" method="post">
-                    {% csrf_token %}
-                    {{ form }}
-                    <input type="submit" value="Submit" />
-                </form>
-
+                {% if user.id == game.form_player_id %}
+                    The other player has given you the word: {{ game.giveword }}
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{ form }}
+                        <input type="submit" value="Submit" />
+                    </form>
+                {% else %}
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <input type="submit" value="Refresh" />
+                    </form>
+                {% endif %}
             </div>
     </div>
 

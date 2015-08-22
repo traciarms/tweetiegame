@@ -15,6 +15,5 @@ class Game(models.Model):
     round = models.IntegerField(default=0)
     giveword = models.CharField(max_length=100, default='')
     guessword = models.CharField(max_length=100, default='')
-    def get_current_player(self):
-        pass
+
 
