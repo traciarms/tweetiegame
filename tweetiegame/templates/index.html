@@ -25,7 +25,9 @@
         </div>
             <div class="form">
                 {% if user.id == game.form_player_id %}
-                    The other player has given you the word: {{ game.giveword }}
+                    {% if user.id == game.form_player_id and user.id != game.give_player %}
+                        The other player has given you the word: {{ game.giveword }}
+                    {% endif %}
                     <form action="" method="post">
                         {% csrf_token %}
                         {{ form }}
