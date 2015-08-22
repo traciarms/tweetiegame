@@ -7,7 +7,7 @@ import json
 from django.views.generic import TemplateView
 from game.client import Client
 import requests
-from game.forms import WordsForm, GiveForm, GuessForm
+from game.forms import GiveForm, GuessForm
 from game.models import Game
 
 
@@ -44,15 +44,12 @@ def playgame(request):
     except:
         game = Game.objects.create(player1=User.objects.get(username='player1'),
                                    player2=User.objects.get(username='player2'),
-                                   current_player=User.objects.get(username='player1'))
+                                   give_player=User.objects.get(username='player1'))
     context = {'game': game, 'giveform': giveform, 'guessform': guessform}
     if request.method == 'GET':
         return render(request, 'index.html', context)
     if request.method == 'POST':
-        form = WordsForm(request.POST)
-        if form.is_valid():
-            data = form.cleaned_data
-            currentword = data['currentword']
-            guessword = data['guessword']
-            context = {'game': game, 'form': form, 'currentword': currentword, 'guessword': guessword}
-            return render(request, 'index.html', context)
+        giveword = giveform.cleaned_data['giveword']
+        guessword = guessform.cleaned_data['guessword']
+        context = {'game': game, 'giveform': giveform, 'guessform': guessform, 'giveword': giveword, 'guessword': guessword}
+        return render(request, 'index.html', context)

@@ -16,7 +16,6 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
-from game.views import SearchTwitterView
 
 urlpatterns = [
     # url(r'^$', SearchTwitterView.as_view(), name='index'),

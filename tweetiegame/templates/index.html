@@ -13,12 +13,12 @@
         <h1 class="title">Tweetie Game</h1>
             <form action="" method="post">
                 {% csrf_token %}
-                {{ form }}
+                {{ giveform }}
                 <input type="submit" value="Submit" />
             </form>
             <form action="" method="post">
                 {% csrf_token %}
-                {{ form }}
+                {{ guessform }}
                 <input type="submit" value="Submit" />
             </form>
 
