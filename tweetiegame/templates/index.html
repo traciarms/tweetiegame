@@ -11,7 +11,7 @@
 <body>
 
     <div id="header">
-        <h1>Tweetie Game</h1>
+        <h1>Tweetie Game: Round {{ game.round }}</h1>
     </div>
 
     <div id="container">
@@ -25,7 +25,7 @@
         </div>
             <div class="form">
                 {% if user.id == game.form_player_id %}
-                    {% if user.id == game.form_player_id and user.id != game.give_player %}
+                    {% if user.id != game.give_player_id %}
                         The other player has given you the word: {{ game.giveword }}
                     {% endif %}
                     <form action="" method="post">

@@ -21,7 +21,7 @@ def get_twitter_dict(word1, word2):
     #     context = super(SearchTwitterView, self).get_context_data(**kwargs)
 
     response = requests.get(
-        'https://api.twitter.com/1.1/search/tweets.json?q={} {}&lang=en&count=100'.
+        'https://api.twitter.com/1.1/search/tweets.json?q={} {}&lang=en&count=100&until=2015-08-17'.
             format(word1, word2),
         headers={'Authorization': 'Bearer {}'.format(TWITTER_TOKEN)})
 
