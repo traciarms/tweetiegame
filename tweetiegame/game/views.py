@@ -36,25 +36,6 @@ def get_twitter_dict(word1, word2):
     return return_dict
 
 def playgame(request):
-    giveform = GiveForm(request.POST)
-    guessform = GuessForm(request.POST)
-    try:
-        game = Game.objects.get(completed=False)
-    except:
-        game = Game.objects.create(player1=User.objects.get(username='player1'),
-                                   player2=User.objects.get(username='player2'),
-                                   give_player=User.objects.get(username='player1'))
-    context = {'game': game, 'giveform': giveform, 'guessform': guessform}
-    if request.method == 'GET':
-        return render(request, 'index.html', context)
-    if request.method == 'POST':
-        giveword = giveform.cleaned_data['giveword']
-        guessword = guessform.cleaned_data['guessword']
-        context = {'game': game, 'giveform': giveform, 'guessform': guessform, 'giveword': giveword, 'guessword': guessword}
-        return render(request, 'index.html', context)        # {count: value, tweets: listof3}
-
-
-def playgame(request):
     give_form = GiveForm(request.POST)
     guess_form = GuessForm(request.POST)
     try:
