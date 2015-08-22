@@ -9,8 +9,21 @@
     <title>Tweetie Game</title>
 </head>
 <body>
+<div>
     <div class="title">
         <h1 class="title">Tweetie Game</h1>
     </div>
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ giveform }}
+                <input type="submit" value="Submit" />
+            </form>
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ guessform }}
+                <input type="submit" value="Submit" />
+            </form>
+
+</div>
 </body>
 </html>

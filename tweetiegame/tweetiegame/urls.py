@@ -16,11 +16,10 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
-from game.views import SearchTwitterView
 
 urlpatterns = [
-    url(r'^$', SearchTwitterView.as_view(), name='index'),
+    # url(r'^$', SearchTwitterView.as_view(), name='index'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^login/', auth_views.login, {'extra_context': {'next': '/'}}, name='login'),
-    url(r'^$', 'game.views.index', name='index'),
+    url(r'^$', 'game.views.playgame', name='index'),
 ]
