@@ -2,40 +2,42 @@
     /*border: solid 1px red;*/
 /*}*/
 
-/** {*/
-    /*box-sizing: border-box;*/
-/*}*/
+* {
+    box-sizing: border-box;
+}
 
-/*.title {*/
-    /*text-align: center;*/
-    /*background: cornflowerblue;*/
-    /**/
-/*}*/
+.title {
+    text-align: center;
+    background: cornflowerblue;
 
-/*.player1score {*/
-    /*float: left;*/
-/*}*/
+}
 
-/*.player2score {*/
-    /*float: right;*/
-/*}*/
+.player1score {
+    float: left;
+}
 
-/*footer {*/
-    /*text-align: center;*/
-/*}*/
+.player2score {
+    float: right;
+}
 
-/*div.form*/
-/*{*/
-    /*display: block;*/
-    /*text-align: center;*/
-/*}*/
-/*form*/
-/*{*/
-    /*display: inline-block;*/
-    /*margin-left: auto;*/
-    /*margin-right: auto;*/
-    /*text-align: left;*/
-/*}*/
+footer {
+    text-align: center;
+}
+
+div.form
+{
+    display: block;
+    text-align: center;
+    clear: both;
+    padding-top: 100px;
+}
+form
+{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
 
 html, body {
     height: 100%;
@@ -52,25 +54,39 @@ html, body {
     top: 0;
     left: 0;
     width: 100%;
+    text-align: center;
 }
 
 #container {
     background-color: red;
-    width: 600px;
-    height: 40%;
-    position: absolute;
-    left: 50%;
-    margin-left: -300px; /* 50% over, then move back 300px to center... */
-
+    width: 100%;
+    height: 100%;
+    padding-top: 80px;
+    justify-content: center;
+    display: block;
 }
 
 #footer {
     background-color: cornflowerblue;
-    height: 250px;
+    height: 35%;
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
+    text-align: center;
+}
+
+#my-div {
+    position: absolute;
+    height: auto;
+    width: 100%;
+    left: 50%;
+    top: 50%;
+    background: red;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
 }
 
 blockquote.twitter-tweet {

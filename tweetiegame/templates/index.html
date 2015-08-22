@@ -13,24 +13,32 @@
     <div id="header">
         <h1>Tweetie Game</h1>
     </div>
-    <div class="title">
-        <h1 class="title">Tweetie Game</h1>
-    </div>
-    <div class="player1score">
-        <span>Player 1
-              Score: put score here</span>
-    </div>
-    <div class="player2score">
-        <span>Player 2
-              Score: put score here</span>
-    </div>
-        <div>
-            <form action="" method="post">
-                {% csrf_token %}
-                {{ form }}
-                <input type="submit" value="Submit" />
-            </form>
 
-</div>
+    <div id="container">
+        <div class="player1score">
+            <span>Player 1
+                  Score: put score here</span>
+        </div>
+        <div class="player2score">
+            <span>Player 2
+                  Score: put score here</span>
+        </div>
+            <div class="form">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ giveform }}
+                    <input type="submit" value="Submit" />
+                </form>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ guessform }}
+                    <input type="submit" value="Submit" />
+                </form>
+            </div>
+    </div>
+
+    <div id="footer">
+        stuff here
+    </div>
 </body>
 </html>
