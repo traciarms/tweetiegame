@@ -7,8 +7,9 @@ from django.shortcuts import render
 import json
 from django.views.generic import TemplateView
 import requests
+from game.forms import WordForm
 from tweetiegame.settings import TWITTER_TOKEN
-from game.forms import GiveForm, GuessForm
+
 from game.models import Game
 
 
@@ -36,21 +37,49 @@ def get_twitter_dict(word1, word2):
     return return_dict
 
 def playgame(request):
-    give_form = GiveForm(request.POST)
-    guess_form = GuessForm(request.POST)
+    form = WordForm(request.POST)
     try:
         game = Game.objects.get(completed=False)
     except:
         game = Game.objects.create(player1=User.objects.get(username='player1'),
                                    player2=User.objects.get(username='player2'),
-                                   give_player=User.objects.get(username='player1'))
+                                   give_player=User.objects.get(username='player1'),
+                                   form_player=User.objects.get(username='player1'))
     if request.method == 'GET':
-        context = {'game': game, 'giveform': give_form, 'guessform': guess_form}
+        context = {'game': game, 'form': form}
         return render(request, 'index.html', context)
     if request.method == 'POST':
-        if give_form.is_valid():
-            giveword = give_form.cleaned_data['giveword']
-        if guess_form.is_valid():
-            guessword = guess_form.cleaned_data['guessword']
-        context = {'game': game, 'giveform': give_form, 'guessform': guess_form, 'giveword': giveword, 'guessword': guessword}
+        if request.user == game.give_player:
+            if form.is_valid():
+                giveword = form.cleaned_data['word']
+                game.giveword = giveword
+                game.save()
+                if game.form_player == User.objects.get(username='player1'):
+                    game.form_player = User.objects.get(username='player2')
+                else:
+                    game.form_player = User.objects.get(username='player1')
+        if request.user != game.give_player:
+            if form.is_valid():
+                guessword = form.cleaned_data['word']
+                game.guessword = guessword
+                game.save()
+        if len(game.guessword) > 0 and len(game.giveword) > 0:
+            twitter_dict = get_twitter_dict(game.giveword, game.guessword)
+            game.giveword = ''
+            game.guessword = ''
+            game.round += 1
+            game.save()
+            if game.give_player == User.objects.get(username='player1'):
+                game.player2score += twitter_dict['count']
+                game.give_player = User.objects.get(username='player2')
+                game.form_player = User.objects.get(username='player2')
+                game.save()
+            else:
+                game.player1score += twitter_dict['count']
+                game.give_player == User.objects.get(username='player1')
+                game.form_player = User.objects.get(username='player1')
+                game.save()
+                context = {'game': game, 'form': form, 'form_player' : game.form_player, 'twitter_dict': twitter_dict}
+                return render(request, 'index.html', context)
+        context = {'game': game, 'form': form,}
         return render(request, 'index.html', context)

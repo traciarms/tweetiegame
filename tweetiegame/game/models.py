@@ -11,4 +11,7 @@ class Game(models.Model):
     player2score = models.IntegerField(default=0)
     completed = models.BooleanField(default=False)
     give_player = models.ForeignKey(User, related_name='give_player')
+    form_player = models.ForeignKey(User, related_name='form_player')
     round = models.IntegerField(default=0)
+    giveword = models.CharField(max_length=100, default='')
+    guessword = models.CharField(max_length=100, default='')

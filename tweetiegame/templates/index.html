@@ -15,15 +15,9 @@
     </div>
             <form action="" method="post">
                 {% csrf_token %}
-                {{ giveform }}
+                {{ form }}
                 <input type="submit" value="Submit" />
             </form>
-            <form action="" method="post">
-                {% csrf_token %}
-                {{ guessform }}
-                <input type="submit" value="Submit" />
-            </form>
-
 </div>
 </body>
 </html>
