@@ -9,26 +9,28 @@ from game.forms import GiveForm, GuessForm
 from game.models import Game
 
 
-class SearchTwitterView(TemplateView):
-    template_name = "index.html"
+# class SearchTwitterView(TemplateView):
+#     template_name = "index.html"
 
-    def get_context_data(self, **kwargs):
-        context = super(SearchTwitterView, self).get_context_data(**kwargs)
+def get_twitter_dict(word1, word2):
+    # context = super(SearchTwitterView, self).get_context_data(**kwargs)
 
-        response = requests.get(
-            'https://api.twitter.com/1.1/search/tweets.json?q={} {}'.
-                format('red', 'dress'),
-            headers={'Authorization': 'Bearer {}'.format(TWITTER_TOKEN)})
+    response = requests.get(
+        'https://api.twitter.com/1.1/search/tweets.json?q={} {}'.
+            format(word1, word2),
+        headers={'Authorization': 'Bearer {}'.format(TWITTER_TOKEN)})
 
-        tweets = response.json()
-        num = len(tweets)
-        tweet_list = tweets['statuses'][:3]
+    tweets = response.json()
 
-        return_dict = {'count': len(tweets), 'tweets': tweet_list}
-        return context
+    tweet_list = tweets['statuses'][:3]
 
-        # {count: value, tweets: listof3}
+    ret_tweet_list = []
+    ret_tweet_list.append(tweet_list[0]['text'])
+    ret_tweet_list.append(tweet_list[1]['text'])
+    ret_tweet_list.append(tweet_list[2]['text'])
 
+    return_dict = {'count': len(tweets), 'tweets': ret_tweet_list}
+    return return_dict
 
 def playgame(request):
     giveform = GiveForm(request.POST)
