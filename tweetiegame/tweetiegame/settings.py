@@ -121,3 +121,5 @@ BOOTSTRAP3 = {
     #  (affects django-bootstrap3 template tags)
     'include_jquery': True,
 }
+
+TWITTER_TOKEN = 'AAAAAAAAAAAAAAAAAAAAANurhAAAAAAAj8OqtKp%2Fs4TE9uoOVOB03jU1INM%3DQxVEdeyVmXmalodksmjtBpd4VWiHNsYN3mIIc4EUQ67lepoegf'
