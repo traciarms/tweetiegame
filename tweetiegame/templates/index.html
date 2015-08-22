@@ -17,28 +17,33 @@
     </div>
     <div class="player1score">
         <span>Player 1
-              Score: put score here</span>
+              Score: {{ game.player1score }}</span>
     </div>
     <div class="player2score">
         <span>Player 2
-              Score: put score here</span>
+              Score: {{ game.player2score }}</span>
     </div>
         <div>
-            <form action="" method="post">
-                {% csrf_token %}
-                {{ giveform }}
-                <input type="submit" value="Submit" />
-            </form>
-            <form action="" method="post">
-                {% csrf_token %}
-                {{ guessform }}
-                <input type="submit" value="Submit" />
-            </form>
+            {% if user.id == game.give_player_id %}
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ giveform }}
+                    <input type="submit" value="Submit" />
+                </form>
+            {% else %}
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ guessform }}
+                    <input type="submit" value="Submit" />
+                </form>
+            {% endif %}
         </div>
 
 </div>
 <footer>
-    Put the tweets here
+    {% for tweet in twitter_list %}
+        {{ tweet }}
+    {% endfor %}
 </footer>
 </body>
 </html>

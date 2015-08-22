@@ -28,9 +28,9 @@ def get_twitter_dict(word1, word2):
     tweet_list = tweets['statuses'][:3]
 
     ret_tweet_list = []
-    ret_tweet_list.append(tweet_list[0]['text'])
-    ret_tweet_list.append(tweet_list[1]['text'])
-    ret_tweet_list.append(tweet_list[2]['text'])
+
+    for each in range(len(tweet_list)):
+        ret_tweet_list.append(tweet_list[each]['text'])
 
     return_dict = {'count': len(tweets), 'tweets': ret_tweet_list}
     return return_dict
@@ -52,5 +52,7 @@ def playgame(request):
             giveword = give_form.cleaned_data['giveword']
         if guess_form.is_valid():
             guessword = guess_form.cleaned_data['guessword']
-        context = {'game': game, 'giveform': give_form, 'guessform': guess_form, 'giveword': giveword, 'guessword': guessword}
+        context = {'game': game, 'giveform': give_form,
+                   'guessform': guess_form, 'giveword': giveword,
+                   'guessword': guessword}
         return render(request, 'index.html', context)
