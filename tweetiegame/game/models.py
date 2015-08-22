@@ -9,4 +9,5 @@ class Game(models.Model):
     player2 = models.ForeignKey(User, related_name='player2')
     player1score = models.IntegerField(default=0)
     player2score = models.IntegerField(default=0)
-
+    completed = models.BooleanField(default=False)
+    give_player = models.ForeignKey(User, related_name='give_player')
