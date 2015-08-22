@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^$', SearchTwitterView.as_view(), name='index'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^login/', auth_views.login, {'extra_context': {'next': '/'}}, name='login'),
+    url(r'^$', 'game.views.index', name='index'),
 ]

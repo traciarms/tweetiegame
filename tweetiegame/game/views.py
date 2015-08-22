@@ -1,12 +1,11 @@
-
 from django.http import HttpResponse
 from django.shortcuts import render
 
 # Create your views here.
 import json
 from django.views.generic import TemplateView
-import requests
 from game.client import Client
+import requests
 
 
 class SearchTwitterView(TemplateView):
