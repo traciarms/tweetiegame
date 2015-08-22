@@ -53,7 +53,6 @@ def playgame(request):
             if form.is_valid():
                 giveword = form.cleaned_data['word']
                 game.giveword = giveword
-                game.save()
                 if game.form_player == User.objects.get(username='player1'):
                     game.form_player = User.objects.get(username='player2')
                 else:
@@ -62,27 +61,27 @@ def playgame(request):
             if form.is_valid():
                 guessword = form.cleaned_data['word']
                 game.guessword = guessword
-                game.save()
         if len(game.guessword) > 0 and len(game.giveword) > 0:
             twitter_dict = get_twitter_dict(game.giveword, game.guessword)
             game.giveword = ''
             game.guessword = ''
             game.round += 1
-            game.save()
             if game.give_player == User.objects.get(username='player1'):
                 game.player2score += twitter_dict['count']
                 game.give_player = User.objects.get(username='player2')
                 game.form_player = User.objects.get(username='player2')
-                game.save()
             else:
                 game.player1score += twitter_dict['count']
                 game.give_player == User.objects.get(username='player1')
                 game.form_player = User.objects.get(username='player1')
-                game.save()
-                context = {'game': game, 'form': form, 'form_player':
+
+            context = {'game': game, 'form': form, 'form_player':
                     game.form_player, 'twitter_dict': twitter_dict}
+            game.save()
             return render(request, 'index.html', context)
+
         context = {'game': game, 'form': form,}
+        game.save()
         return render(request, 'index.html', context)
 
 
