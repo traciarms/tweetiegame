@@ -29,9 +29,9 @@ def get_twitter_dict(word1, word2):
     tweet_list = tweets['statuses'][:3]
 
     ret_tweet_list = []
-    ret_tweet_list.append(tweet_list[0]['text'])
-    ret_tweet_list.append(tweet_list[1]['text'])
-    ret_tweet_list.append(tweet_list[2]['text'])
+
+    for each in range(len(tweet_list)):
+        ret_tweet_list.append(tweet_list[each]['text'])
 
     return_dict = {'count': len(tweets), 'tweets': ret_tweet_list}
     return return_dict
