@@ -17,28 +17,25 @@
     <div id="container">
         <div class="player1score">
             <span>Player 1
-                  Score: put score here</span>
+                  Score: {{ game.player1score }}</span>
         </div>
         <div class="player2score">
             <span>Player 2
-                  Score: put score here</span>
+                  Score: {{ game.player2score }}</span>
         </div>
             <div class="form">
                 <form action="" method="post">
                     {% csrf_token %}
-                    {{ giveform }}
+                    {{ form }}
                     <input type="submit" value="Submit" />
                 </form>
-                <form action="" method="post">
-                    {% csrf_token %}
-                    {{ guessform }}
-                    <input type="submit" value="Submit" />
-                </form>
+
             </div>
     </div>
 
     <div id="footer">
-        stuff here
+        {{ twitter_dict.tweets }}
     </div>
 </body>
 </html>
+

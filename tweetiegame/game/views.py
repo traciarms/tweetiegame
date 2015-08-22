@@ -79,7 +79,8 @@ def playgame(request):
                 game.give_player == User.objects.get(username='player1')
                 game.form_player = User.objects.get(username='player1')
                 game.save()
-                context = {'game': game, 'form': form, 'form_player' : game.form_player, 'twitter_dict': twitter_dict}
-                return render(request, 'index.html', context)
+                context = {'game': game, 'form': form, 'form_player':
+                    game.form_player, 'twitter_dict': twitter_dict}
+            return render(request, 'index.html', context)
         context = {'game': game, 'form': form,}
         return render(request, 'index.html', context)
