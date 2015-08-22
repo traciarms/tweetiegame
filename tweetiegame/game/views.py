@@ -1,33 +1,29 @@
-from django.http import HttpResponse
-from django.shortcuts import render
 
 # Create your views here.
 import json
 from django.views.generic import TemplateView
-from game.client import Client
 import requests
+from tweetiegame.settings import TWITTER_TOKEN
 
 
 class SearchTwitterView(TemplateView):
     template_name = "index.html"
 
+    # def get_tweet_dict(word1, word2):
     def get_context_data(self, **kwargs):
         context = super(SearchTwitterView, self).get_context_data(**kwargs)
 
-        # The consumer secret is an example and will not work for real requests
-        # To register an app visit https://dev.twitter.com/apps/new
-        CONSUMER_KEY = 'N5pdrHbC2BU4vkzmzzgAkXQ9T'
-        CONSUMER_SECRET = 'tdBSEKC4fnePzds99rLHx63ErvuTOqpQ3gStQI7ApN2AuJQnir'
+        response = requests.get(
+            'https://api.twitter.com/1.1/search/tweets.json?q={} {}'.
+                format('red', 'dress'),
+            headers={'Authorization': 'Bearer {}'.format(TWITTER_TOKEN)})
 
-        client = Client(CONSUMER_KEY, CONSUMER_SECRET)
+        tweets = response.json()
+        num = len(tweets)
+        tweet_list = tweets['statuses']
 
-        # Pretty print of tweet payload
-        # tweet = client.request('https://api.twitter.com/1.1/statuses/show.json?id=316683059296624640')
-        context['tweet'] = requests.get('https://api.twitter.com/1.1/search/tweets.json')
-        # print(json.dumps(tweet, sort_keys=True, indent=4, separators=(',', ':')))
-
-        # Show rate limit status for this application
-        # status = client.rate_limit_status()
-        # print(status['resources']['search'])
+        return_dict = {'count': len(tweets), 'tweets': tweet_list}
         return context
+
+        # {count: value, tweets: listof3}
 
