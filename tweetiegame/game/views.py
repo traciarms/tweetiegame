@@ -37,7 +37,7 @@ def get_twitter_dict(word1, word2):
     return return_dict
 
 def playgame(request):
-    form = WordForm(request.POST)
+
     winner = ''
     try:
         game = Game.objects.get(completed=False)
@@ -47,9 +47,12 @@ def playgame(request):
                                    give_player=User.objects.get(username='player1'),
                                    form_player=User.objects.get(username='player1'))
     if request.method == 'GET':
+        form = WordForm()
         context = {'game': game, 'form': form}
         return render(request, 'index.html', context)
+
     if request.method == 'POST':
+        form = WordForm(request.POST)
         if request.user == game.give_player:
             if form.is_valid():
                 giveword = form.cleaned_data['word']
@@ -76,6 +79,7 @@ def playgame(request):
                 game.give_player = User.objects.get(username='player1')
                 game.form_player = User.objects.get(username='player1')
             game.save()
+            form = WordForm()
             if game.round == 6:
                 game.completed = True
                 if game.player1score > game.player2score:
