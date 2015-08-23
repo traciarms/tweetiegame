@@ -14,7 +14,6 @@
 
     <div id="header">
         <h1 class="title">Tweetie Game</h1>
-        <h1>Tweetie Game: Round {{ game.round }}</h1>
     </div>
 
     <div id="container">
@@ -37,9 +36,11 @@
                 {% if user.id == game.form_player_id %}
                     <form action="" method="post">
                         {% csrf_token %}
-                        {{ form }}
-                        Please enter a word to start this turn:
+                        {% bootstrap_form form layout='inline'%}
                         <input type="submit" value="Submit" />
+                        {{ form }}
+                        Please enter a word to start this turn:<br>
+                        <input type="submit" value="Submit" /><br>
                     </form>
                     {% if user.id != game.give_player_id %}
                         The other player has given you the word: {{ game.giveword }}
@@ -47,6 +48,7 @@
                 {% else %}
                     <form action="" method="post">
                         {% csrf_token %}
+                        Please wait for the other player to submit:<br>
                         <input type="submit" value="Refresh" />
                     </form>
                 {% endif %}
