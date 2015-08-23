@@ -38,8 +38,8 @@
                     <form action="" method="post">
                         {% csrf_token %}
                         {{ form }}
-                        Please enter a word to start this turn:
-                        <input type="submit" value="Submit" />
+                        Please enter a word to start this turn:<br>
+                        <input type="submit" value="Submit" /><br>
                     </form>
                     {% if user.id != game.give_player_id %}
                         The other player has given you the word: {{ game.giveword }}
@@ -47,6 +47,7 @@
                 {% else %}
                     <form action="" method="post">
                         {% csrf_token %}
+                        Please wait for the other player to submit:<br>
                         <input type="submit" value="Refresh" />
                     </form>
                 {% endif %}
