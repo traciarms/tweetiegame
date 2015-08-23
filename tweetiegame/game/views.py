@@ -38,6 +38,7 @@ def get_twitter_dict(word1, word2):
 
 def playgame(request):
     form = WordForm(request.POST)
+    winner = ''
     try:
         game = Game.objects.get(completed=False)
     except:
@@ -72,18 +73,18 @@ def playgame(request):
                 game.form_player = User.objects.get(username='player2')
             else:
                 game.player1score += twitter_dict['count']
-                game.give_player == User.objects.get(username='player1')
+                game.give_player = User.objects.get(username='player1')
                 game.form_player = User.objects.get(username='player1')
-
-            context = {'game': game, 'form': form, 'form_player':
-                    game.form_player, 'twitter_dict': twitter_dict}
             game.save()
+            if game.round == 6:
+                game.completed = True
+                if game.player1score > game.player2score:
+                    winner = 'Player 1'
+                else:
+                    winner = 'Player 2'
+            context = {'game': game, 'form': form, 'form_player':
+                    game.form_player, 'twitter_dict': twitter_dict, 'winner': winner}
             return render(request, 'index.html', context)
-
         context = {'game': game, 'form': form,}
         game.save()
         return render(request, 'index.html', context)
-
-
-    #TODO: add refreash button, fix how tweets only show up for one person, hide form,
-    # TODO: add rounds and declare winner.

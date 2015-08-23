@@ -79,6 +79,9 @@ html, body {
     padding-top: 80px;
     justify-content: center;
     display: block;
+    background-image: url("http://juliaelman.com/static/images/the-iron-yard.png"), url("http://theironyard.com/images/courses/icons/data-science-icon.png");
+    background-repeat: no-repeat;
+    background-position: left, right;
 }
 
 #footer {
