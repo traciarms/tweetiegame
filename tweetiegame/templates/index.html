@@ -32,8 +32,9 @@
 
             <div class="form">
             {% if game.completed %}
-                YAYE!!!!  {{ winner }} YOU WIN!!!!!
                 <form action="" method="post">
+                {% csrf_token %}
+                    YAYE!!!!  {{ winner }} YOU WIN!!!!!
                 <div style="text-align: center;">
                 <input type="submit" value="Refresh"/>
                 </div>
