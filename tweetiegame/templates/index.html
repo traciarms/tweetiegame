@@ -33,6 +33,11 @@
             <div class="form">
             {% if game.completed %}
                 YAYE!!!!  {{ winner }} YOU WIN!!!!!
+                <form action="" method="post">
+                <div style="text-align: center;">
+                <input type="submit" value="Refresh"/>
+                </div>
+                </form>
             {% else %}
                 {% if user.id == game.form_player_id %}
                     <form action="" method="post">
@@ -52,7 +57,7 @@
                         {% csrf_token %}
                         <h3>Please wait for the other player to submit:</h3>
                         <div style="text-align: center">
-                        <input type="submit" value="Refresh" style=""/>
+                        <input type="submit" value="Refresh"/>
                         </div>
                     </form>
 
