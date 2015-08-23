@@ -78,14 +78,14 @@ def playgame(request):
                 game.player1score += twitter_dict['count']
                 game.give_player = User.objects.get(username='player1')
                 game.form_player = User.objects.get(username='player1')
-            game.save()
             form = WordForm()
-            if game.round == 6:
+            if game.round >= 6:
                 game.completed = True
                 if game.player1score > game.player2score:
                     winner = 'Player 1'
                 else:
                     winner = 'Player 2'
+            game.save()
             context = {'game': game, 'form': form, 'form_player':
                     game.form_player, 'twitter_dict': twitter_dict, 'winner': winner}
             return render(request, 'index.html', context)

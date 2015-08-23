@@ -12,7 +12,7 @@ class Game(models.Model):
     completed = models.BooleanField(default=False)
     give_player = models.ForeignKey(User, related_name='give_player')
     form_player = models.ForeignKey(User, related_name='form_player')
-    round = models.IntegerField(default=0)
+    round = models.IntegerField(default=1)
     giveword = models.CharField(max_length=100, default='')
     guessword = models.CharField(max_length=100, default='')
 

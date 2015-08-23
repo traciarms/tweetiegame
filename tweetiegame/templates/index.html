@@ -29,8 +29,6 @@
                   Score: {{ game.player2score }}</span>
         </div>
 
-
-            <div class="form">
             {% if game.completed %}
                 <form action="" method="post">
                 {% csrf_token %}
