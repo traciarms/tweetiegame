@@ -26,6 +26,7 @@ SECRET_KEY = 'xtt($)pk0&e=!$$=(!edwr&bkj+%-ktl!6c30*jvuya085r$@t'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+xw0f5+x+k(*el*-uc*%p86a9re8(35f1z9=r+t39o@nvyzs9sg
 
 
 # Application definition
@@ -37,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
     'game',
     'bootstrap3'
 )
@@ -78,8 +80,12 @@ WSGI_APPLICATION = 'tweetiegame.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'tweetiegame',
+        'USER':'Eric',
+        'PASSWORD': '',
+        'HOST': '127.0.0.1',
+        'POST': '',
     }
 }
 
@@ -102,6 +108,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = 'staticfiles'
 
 STATICFILES_DIRS =(
     os.path.join(BASE_DIR, 'global'),
@@ -114,7 +121,7 @@ BOOTSTRAP3 = {
     # The Bootstrap base URL
     'base_url': '/static/bootstrap/',
 
-    # The complete URL to the Bootstrap CSS file (None means no theme)
+    # The complete URL to the Bootstrap CSS file (None means no theme)pyhton
     'theme_url': '/static/bootstrap/css/sandstone.css',
 
     # Include jQuery with Bootstrap JavaScript
