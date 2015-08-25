@@ -1,1 +1,1 @@
-web: gunicorn chirper.wsgi --log-file -
+web: gunicorn tweetiegame.wsgi --log-file -
